@@ -6,6 +6,6 @@ const {insertUser, userData} = require("../controllers/usersController");
 const { isLogin } = require("../middlewares/isLogin");
 
 router.post("/usuarios",reportRequest, insertUser)
-router.get("/usuarios", reportRequest, userData)
+router.get("/usuarios", reportRequest,isLogin, userData)
 
 module.exports = router
