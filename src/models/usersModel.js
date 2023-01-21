@@ -3,12 +3,6 @@ const bcrypt = require('bcryptjs');
 const e = require("express");
 
 const registerUser = async (user) => {
-    if ( await checkIfUserAlreadyExists(user)) {
-        throw {
-            code: 404,
-            message: "User already exists"
-        }
-    }
     try {
         let { email, password, rol, lenguage } = user;
         const encriptedPassword = bcrypt.hashSync(password);
@@ -32,6 +26,7 @@ const registerUser = async (user) => {
 };
 // check if user already exists, returns true if exists, false if not
 const checkIfUserAlreadyExists = async ({email}) => {
+    console.log("email on model", email)
     try {
         const consulta = "SELECT * FROM usuarios WHERE email = $1"
         const values = [email]
@@ -58,4 +53,4 @@ const getUser = async (email) => {
     }
 };
 
-module.exports = {registerUser, getUser}
+module.exports = {registerUser,checkIfUserAlreadyExists, getUser}
