@@ -11,7 +11,6 @@ const registerUser = async (user) => {
     }
     try {
         let { email, password, rol, lenguage } = user;
-        
         const encriptedPassword = bcrypt.hashSync(password);
         password = encriptedPassword;
         const values = [email, encriptedPassword, rol, lenguage];
@@ -47,5 +46,19 @@ const checkIfUserAlreadyExists = async ({email}) => {
         console.log(error)
     }
 }
+
+const getUser = async (payload) => {
+    try {
+        values = [email];
+        const consulta = "SELECT * FROM usuarios WHERE email = $1";
+        const result = await pool.query(consulta, values);
+        if(!rowCount) {
+            throw {code: 404, message: "User not found"}
+        }
+        return result.rows;
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 module.exports = {registerUser}

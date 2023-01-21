@@ -1,4 +1,4 @@
-const { registerUser } = require("../models/usersModel");
+const { registerUser, getUser } = require("../models/usersModel");
 const { checkUserFields } = require("../helpers/validateNewUser");
 
 const insertUser = async (req, res) => {
@@ -14,5 +14,13 @@ const insertUser = async (req, res) => {
         res.send(error);
     }
 };
+
+const returnUser = async (req, res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
 
 module.exports = { insertUser };
