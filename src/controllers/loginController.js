@@ -10,8 +10,9 @@ const userLogin = async (req, res) => {
     password.toLowerCase()
     try {
         const user = await verifyCredentials(email)
-        
-        if (user){
+
+        //check if user is not a empty arra
+        if (user[0]){
             const {password: encryptedPassword} = user[0]
             const isPasswordCorrect = bcrypt.compareSync(password, encryptedPassword)
 
@@ -22,7 +23,9 @@ const userLogin = async (req, res) => {
                 res.status(500).send("Invalid user or password")
             }
             
-        } 
+        } else {
+            res.status(500).send("Invalid user or password")
+        }
     } catch (error) {
         console.log(error)
         res.status(500).send("Something went wrong")
