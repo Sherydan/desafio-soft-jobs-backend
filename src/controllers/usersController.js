@@ -1,5 +1,6 @@
 const { registerUser, getUser } = require("../models/usersModel");
 const { checkUserFields } = require("../helpers/validateNewUser");
+const jwt = require("jsonwebtoken");
 
 const insertUser = async (req, res) => {
     try {
@@ -15,12 +16,19 @@ const insertUser = async (req, res) => {
     }
 };
 
-const returnUser = async (req, res) => {
+
+const userData = async (req, res) => {
     try {
-        
+        const Authorization = req.header("Authorization");
+        const token = Authorization.split("Bearer ")[1];
+        const {email} = jwt.decode(token)
+        const user = await getUser(email)
+        console.log(user);
+        res.status(200).send(user[0])
     } catch (error) {
-        
+        console.log(error)
+        res.status(500).send(error)
     }
 }
 
-module.exports = { insertUser };
+module.exports = { insertUser, userData };

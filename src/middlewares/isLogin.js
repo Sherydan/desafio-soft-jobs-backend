@@ -4,6 +4,7 @@ const { validateToken } = require("../helpers/validateJwt");
 const isLogin = async (req, res, next) => {
     try {
         if (!req.header("Authorization")) {
+            
             return res.status(401).send({ message: "Por favor inicia sesion" });
         }
         const token = req.header("Authorization").split(" ")[1];
