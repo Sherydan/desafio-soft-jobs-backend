@@ -13,7 +13,7 @@ const insertUser = async (req, res) => {
         const user = { email, password, rol, lenguage };
         const userExists = await checkIfUserAlreadyExists(user);
         if (userExists) {
-            res.status(500).send("User already exists");
+            res.status(404).send("User already exists");
         } else {
             if (checkUserFields(user)) {
                 res.status(500).send("Please fill all fields");

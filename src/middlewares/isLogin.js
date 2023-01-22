@@ -11,7 +11,8 @@ const isLogin = async (req, res, next) => {
 
     // chek if token exists
     if (token === "null" || token === "undefined" || token === null) {
-        res.status(500).send("You must be logged in");
+        res.status(401).send("You must be logged in");
+        
     } else {
         try {
             //console.log(token);
