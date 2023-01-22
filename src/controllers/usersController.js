@@ -8,11 +8,6 @@ const jwt = require("jsonwebtoken");
 
 const insertUser = async (req, res) => {
     
-    // add a new user to the database
-    // check if all fields are filled
-    // check if user already exists
-    // if not, create a new user
-    // return a response
     try {
         const { email, password, rol, lenguage } = req.body;
         const user = { email, password, rol, lenguage };
@@ -32,20 +27,7 @@ const insertUser = async (req, res) => {
         res.status(500).send(error);
     }
 
-    // try {
-    //     const payload = req.body;
-    //     if (checkUserFields(payload)) {
-    //         res.status(404).send("All fields are required");
-    //     } else {
-    //         if (await checkIfUserAlreadyExists(payload)) {
-    //             res.status(404).send("User already exists");
-    //         }
-    //     }
-    //     const newUser = await registerUser(payload);
-    //     res.status(201).json(newUser);
-    // } catch (error) {
-    //     res.send(error);
-    // }
+
 
 };
 
