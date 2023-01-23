@@ -33,9 +33,9 @@ const insertUser = async (req, res) => {
 
 const userData = async (req, res) => {
     try {
-        const Authorization = req.header("Authorization");
-        const token = Authorization.split("Bearer ")[1];
-        const { email } = jwt.decode(token);
+        // const Authorization = req.header("Authorization");
+        // const token = Authorization.split("Bearer ")[1];
+        const { email } = req;
         const user = await getUser(email);
         console.log(user);
         res.status(200).send(user[0]);
